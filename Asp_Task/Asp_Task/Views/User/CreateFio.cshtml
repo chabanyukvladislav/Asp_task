@@ -1,0 +1,28 @@
+﻿@model Fio
+
+@{
+    ViewBag.Title = "FIO";
+    Layout = "_Layout";
+}
+
+<h2>FIO</h2>
+
+<form asp-action="CreateFio" asp-controller="User" method="post">
+    <div>
+        <div asp-validation-summary="All"></div>
+
+        <div>
+            <label asp-for="Name"></label>
+            <input type="text" asp-for="Name" />
+            <span asp-validation-for="Name"></span>
+        </div>
+
+        <div>
+            <label asp-for="Surname"></label>
+            <input type="text" asp-for="Surname" />
+            <span asp-validation-for="Surname"></span>
+        </div>
+
+        <input type="submit" value="Send" />
+    </div>
+</form>

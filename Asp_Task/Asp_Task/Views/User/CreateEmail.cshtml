@@ -1,0 +1,27 @@
+﻿@model User
+
+@{
+    ViewBag.Title = "Email";
+    Layout = "_Layout";
+}
+
+<h2>Email</h2>
+
+<form asp-action="CreateEmail" asp-controller="User" method="post">
+    <div>
+        <div asp-validation-summary="All"></div>
+
+        <input type="hidden" value="@Model.Fio.Name" asp-for="Fio.Name" />
+        <input type="hidden" value="@Model.Fio.Surname" asp-for="Fio.Surname" />
+
+        <div>
+            <label asp-for="Email"></label>
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <input type="submit" value="Send" />
+    </div>
+</form>
+
+<a asp-action="CreateFio" asp-controller="User">Back</a>
