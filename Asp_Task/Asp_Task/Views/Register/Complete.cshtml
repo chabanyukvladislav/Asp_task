@@ -1,0 +1,16 @@
+﻿@model User
+@using Asp_Task.Services
+@inject ICookieProvider Provider
+@{
+    ViewBag.Title = "Result";
+    Layout = "_Layout";
+}
+
+<h2>Result</h2>
+
+<p>Name: @Model.FullName.Name</p>
+<p>Surname: @Model.FullName.Surname</p>
+<p>Email: @Model.AdditionalInfo.Email</p>
+<p>Count: @Provider.GetValidationCount()</p>
+
+<a asp-action="Step2" asp-controller="Register">Back</a>

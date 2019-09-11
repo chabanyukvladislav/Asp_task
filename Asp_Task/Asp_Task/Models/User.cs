@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Newtonsoft.Json;
 
 namespace Asp_Task.Models
 {
@@ -6,18 +6,20 @@ namespace Asp_Task.Models
     {
         public User()
         {
-            Fio = new Fio();
+            FullName = new UserFullName();
+            AdditionalInfo = new UserAdditionalInfo();
         }
 
-        public User(Fio fio)
+        public User(UserFullName fio, UserAdditionalInfo additionalInfo)
         {
-            Fio = fio ?? new Fio();
+            FullName = fio ?? new UserFullName();
+            AdditionalInfo = additionalInfo ?? new UserAdditionalInfo();
         }
 
-        public Fio Fio { get; }
+        [JsonProperty("full_name")]
+        public UserFullName FullName { get; set; }
 
-        [Required(ErrorMessage = "Введите email")]
-        [EmailAddress(ErrorMessage = "Введите email")]
-        public string Email { get; set; }
+        [JsonProperty("additional_info")]
+        public UserAdditionalInfo AdditionalInfo { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-﻿@model User
+﻿@model UserAdditionalInfo
 
 @{
     ViewBag.Title = "Email";
@@ -7,12 +7,9 @@
 
 <h2>Email</h2>
 
-<form asp-action="CreateEmail" asp-controller="User" method="post">
+<form asp-action="Step2" asp-controller="Register" method="post">
     <div>
         <div asp-validation-summary="All"></div>
-
-        <input type="hidden" value="@Model.Fio.Name" asp-for="Fio.Name" />
-        <input type="hidden" value="@Model.Fio.Surname" asp-for="Fio.Surname" />
 
         <div>
             <label asp-for="Email"></label>
@@ -24,4 +21,4 @@
     </div>
 </form>
 
-<a asp-action="CreateFio" asp-controller="User">Back</a>
+<a asp-action="Step1" asp-controller="Register">Back</a>

@@ -1,10 +1,10 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Asp_Task.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Asp_Task
 {
@@ -20,10 +20,10 @@ namespace Asp_Task
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.TryAddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<ICookieProvider, CookieProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,8 +44,11 @@ namespace Asp_Task
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "users", 
+                    template: "users/{controller}/{action}");
+                routes.MapRoute(
                     name: "default",
-                    template: "{controller=User}/{action=Index}/{id?}");
+                    template: "{controller=Register}/{action=Complete}/{id?}");
             });
         }
     }
